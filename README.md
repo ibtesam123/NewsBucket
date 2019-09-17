@@ -4,9 +4,7 @@ Major UI Revamp of my previous news app.
 
 ## ScreenShots
 
-<img src="screenshots/ScreenShot1.jpeg" width="150" height="300">
-
-<img src="screenshots/ScreenShot2.jpeg" width="150" height="300">
+<img src="screenshots/ScreenShot1.jpeg" width="150" height="300">     <img src="screenshots/ScreenShot2.jpeg" width="150" height="300">
 
 
 ## Download APK
