@@ -40,7 +40,7 @@ mixin OperateModel on ConnectedModel {
     }
 
     
-    String _apiKey= "ENTER_YOUR_NEWSAPI_KEY_HERE"; //Site: https://newsapi.org/
+    String _apiKey= <Enter YOUR API_KEY HERE>;   // Get it from https://newsapi.org 
     String _loadURL;
 
     if (_categoryList[pageNo] == 'general')

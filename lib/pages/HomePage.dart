@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-import '../utils/CustomColors.dart';
 import '../pages/NewsListPage.dart';
 import '../scope_models/MainModel.dart';
+import '../utils/CustomColors.dart';
 import '../utils/DarkModeEnum.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,11 +18,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   PageController _newsFeedPageController = PageController();
   PageController _navigationPageController =
       PageController(viewportFraction: 0.8);
-
-  void _initialize() {
-    this._height = MediaQuery.of(context).size.height;
-    this._width = MediaQuery.of(context).size.width;
-  }
 
   Widget _buildAppBar() {
     return PreferredSize(
@@ -84,9 +80,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: PageView.builder(
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                child: Text('${model.categoryList[index]}',
-                    style:
-                        model.currentPage == index ? _selected : _notSelected),
+                child: Text(
+                  '${model.categoryList[index]}',
+                  style: model.currentPage == index ? _selected : _notSelected,
+                ),
               );
             },
             itemCount: 6,
@@ -167,14 +164,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           padding: EdgeInsets.only(top: 15.0),
           width: _width,
           child: PageView.builder(
-            // pageSnapping: true,
             itemBuilder: (BuildContext context, int index) {
               return model.isLoading
                   ? _loadingWidget()
                   : Container(
                       padding: EdgeInsets.only(left: 30.0),
                       child: NewsListPage(
-                        context: context,
                         list: model.newsList[model.currentPage],
                         mode: model.getMode,
                       ),
@@ -209,7 +204,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    _initialize();
+    _height = MediaQuery.of(context).size.height;
+    _width = MediaQuery.of(context).size.width;
+    FlutterStatusbarcolor.setStatusBarColor(Colors.grey);
     return ScopedModelDescendant<MainModel>(
       builder: (BuildContext context, Widget child, MainModel model) {
         return Scaffold(

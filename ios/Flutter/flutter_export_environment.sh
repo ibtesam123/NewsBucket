@@ -1,10 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/ibtesam/Documents/DEVELOPMENT/flutter"
-export "FLUTTER_APPLICATION_PATH=/home/ibtesam/Documents/PROGRAMS/Flutter/NewsAppRevamp"
-export "FLUTTER_TARGET=lib/main.dart"
+export "FLUTTER_ROOT=D:\SOFTWARES\flutter"
+export "FLUTTER_APPLICATION_PATH=D:\PROGRAMS\Flutter\news_bucket"
+export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "SYMROOT=${SOURCE_ROOT}/../build/ios"
-export "FLUTTER_FRAMEWORK_DIR=/home/ibtesam/Documents/DEVELOPMENT/flutter/bin/cache/artifacts/engine/ios"
+export "SYMROOT=${SOURCE_ROOT}/../build\ios"
+export "OTHER_LDFLAGS=$(inherited) -framework Flutter"
+export "FLUTTER_FRAMEWORK_DIR=D:\SOFTWARES\flutter\bin\cache\artifacts\engine\ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"

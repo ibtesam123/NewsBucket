@@ -1,15 +1,17 @@
-name: news_app
-description: A new Flutter project.
-
+name: News_Bucket
+description: News App made using flutter
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.2
+  flutter_statusbarcolor: ^0.2.3
+
+  cupertino_icons: 
   scoped_model:
   http:
   cached_network_image:
@@ -20,14 +22,18 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 flutter:
+
   uses-material-design: true
+
   assets:
    - assets/images/menu.png
    - assets/images/menuDark.png
    - assets/images/profile.png
    - assets/images/back_arrow.png 
    - assets/images/clock.png 
+   - assets/images/news.png 
    - assets/images/author.png 
    - assets/images/authorDark.png
    - assets/images/bookmarked.png 
@@ -45,8 +51,3 @@ flutter:
           style: italic
         - asset: assets/fonts/Livvic/Livvic-Bold.ttf
           weight: 700
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700

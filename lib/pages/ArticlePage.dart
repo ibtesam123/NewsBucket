@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/CustomColors.dart';
+import '../models/NewsModel.dart';
 import '../scope_models/MainModel.dart';
+import '../utils/CustomColors.dart';
 import '../utils/DarkModeEnum.dart';
 
 class ArticlePage extends StatefulWidget {
-  final int index;
-  ArticlePage({@required this.index});
+  final NewsModel article;
+  ArticlePage({@required this.article});
 
   @override
   _ArticlePageState createState() => _ArticlePageState();
@@ -16,11 +17,6 @@ class ArticlePage extends StatefulWidget {
 
 class _ArticlePageState extends State<ArticlePage> {
   double _height, _width;
-
-  void _initialize() {
-    this._height = MediaQuery.of(context).size.height;
-    this._width = MediaQuery.of(context).size.width;
-  }
 
   Widget _buildAppBar() {
     return PreferredSize(
@@ -69,7 +65,6 @@ class _ArticlePageState extends State<ArticlePage> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
-            // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50.0)),
           ),
           child: Container(
               padding: EdgeInsets.only(left: 30.0, top: 1.0),
@@ -77,22 +72,16 @@ class _ArticlePageState extends State<ArticlePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    model.newsList[model.currentPage][widget.index].category,
+                    widget.article.category,
                     style: TextStyle(color: Colors.white, fontSize: 15.0),
                   ),
                   SizedBox(height: 10.0),
                   Container(
                     width: _width,
                     child: Text(
-                      model.newsList[model.currentPage][widget.index].title
-                                  .length >
-                              70
-                          ? model.newsList[model.currentPage][widget.index]
-                                  .title
-                                  .substring(0, 74) +
-                              '...'
-                          : model
-                              .newsList[model.currentPage][widget.index].title,
+                      widget.article.title.length > 74
+                          ? widget.article.title.substring(0, 74) + '...'
+                          : widget.article.title,
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -136,10 +125,8 @@ class _ArticlePageState extends State<ArticlePage> {
               height: _height * 0.52,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(model
-                        .newsList[model.currentPage][widget.index].imageUrl),
+                    image: NetworkImage(widget.article.imageUrl),
                     fit: BoxFit.cover),
-                // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50.0)),
               ),
             ),
             _buildArticleTitle(),
@@ -176,10 +163,9 @@ class _ArticlePageState extends State<ArticlePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    model.newsList[model.currentPage][widget.index].author == ''
+                    widget.article.author == ''
                         ? 'Unknown'
-                        : _makeAuthor(model
-                            .newsList[model.currentPage][widget.index].author),
+                        : _makeAuthor(widget.article.author),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16.0,
@@ -188,7 +174,7 @@ class _ArticlePageState extends State<ArticlePage> {
                             : Colors.black),
                   ),
                   Text(
-                    model.newsList[model.currentPage][widget.index].source,
+                    widget.article.source,
                     style: TextStyle(
                         color: model.getMode == Mode.DARK
                             ? Colors.white70
@@ -211,10 +197,8 @@ class _ArticlePageState extends State<ArticlePage> {
               SizedBox(width: 15.0),
               GestureDetector(
                   onTap: () async {
-                    if (await canLaunch(
-                        model.newsList[model.currentPage][widget.index].url)) {
-                      await launch(
-                          model.newsList[model.currentPage][widget.index].url);
+                    if (await canLaunch(widget.article.url)) {
+                      await launch(widget.article.url);
                     } else {
                       print('Cannot Launch');
                     }
@@ -268,8 +252,7 @@ class _ArticlePageState extends State<ArticlePage> {
                   child: ListView(
                     children: <Widget>[
                       Text(
-                        model.newsList[model.currentPage][widget.index]
-                            .description,
+                        widget.article.description,
                         style: TextStyle(
                             fontSize: 20.0,
                             color: model.getMode == Mode.DARK
@@ -287,7 +270,8 @@ class _ArticlePageState extends State<ArticlePage> {
 
   @override
   Widget build(BuildContext context) {
-    _initialize();
+    _height = MediaQuery.of(context).size.height;
+    _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         height: _height,

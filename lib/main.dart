@@ -5,30 +5,24 @@ import './pages/HomePage.dart';
 import './pages/SplashScreen.dart';
 import './scope_models/MainModel.dart';
 
-void main() => runApp(MyMaterial());
-
-class MyMaterial extends StatefulWidget {
-  @override
-  _MyMaterialState createState() => _MyMaterialState();
+void main() {
+  final MainModel _model = MainModel();
+  runApp(MyMaterial(model: _model));
 }
 
-class _MyMaterialState extends State<MyMaterial> {
-  MainModel _model;
+class MyMaterial extends StatelessWidget {
+  final MainModel model;
 
-  @override
-  void initState() {
-    super.initState();
-    _model = MainModel();
-  }
+  MyMaterial({@required this.model});
 
   @override
   Widget build(BuildContext context) {
     return ScopedModel<MainModel>(
-      model: _model,
+      model: model,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) => SplashScreen(model: _model),
+          '/': (BuildContext context) => SplashScreen(),
           '/HomePage': (BuildContext context) => HomePage(),
         },
         builder: (BuildContext context, Widget child) {
