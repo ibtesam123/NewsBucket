@@ -11,7 +11,7 @@ News Bucket is a major UI Revamp of my previous news app. It uses newsapi.org fo
 
 ## Download
 
-[<img src="./screenshots/playstore.png" width='400'>]()
+[<img src="./screenshots/playstore.png" width='400'>](https://play.google.com/store/apps/details?id=news.bucket)
 
 
 ## Installation
